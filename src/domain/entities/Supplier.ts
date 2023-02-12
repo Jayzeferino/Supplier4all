@@ -3,7 +3,8 @@ import { Entity } from "../../core/domain/entity";
 type SupplierProps = {
     name: string
     contact: number
-    Eccomerce?: string
+    email?: string
+    eccomerce?: string
     instragramUrl?: string
     rate?: number
     createAt?: Date
@@ -19,7 +20,6 @@ export class Supplier extends Entity<SupplierProps> {
         const supplier = new Supplier({...props, 
         createAt: props.createAt ?? new Date()
     })
-        
          return supplier
      }
 }

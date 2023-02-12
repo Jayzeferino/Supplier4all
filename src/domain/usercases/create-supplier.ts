@@ -4,20 +4,23 @@ import { Supplier } from "../entities/Supplier"
 type CreateSupplierRequest= {
     name: string
     contact: number
+    email: string
 
 }
 
-class CreateSupplier{
+export class CreateSupplier{
     
-    private constructor(private supplierRepository: SuppliersRepository)
+    public constructor(private supplierRepository: SuppliersRepository)
     {}
 
-    async execute({ name , contact} : CreateSupplierRequest){
+    async execute({ name , contact, email} : CreateSupplierRequest){
         const supplier = Supplier.create({
             name,
-            contact
+            contact,
+            email
         })
-        this.supplierRepository.save(supplier)
+        await this.supplierRepository.save(supplier)
+    
         return supplier
     }
 }
