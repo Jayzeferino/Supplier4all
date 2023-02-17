@@ -5,7 +5,6 @@ type CreateSupplierRequest= {
     name: string
     contact: number
     email: string
-
 }
 
 export class CreateSupplier{
@@ -19,8 +18,12 @@ export class CreateSupplier{
             contact,
             email
         })
+        const checkUniqueEmail = await this.supplierRepository.findByEmail(email)
+        
+        if(checkUniqueEmail != undefined){
+            throw new Error("Email aready used")
+        }
         await this.supplierRepository.save(supplier)
-    
         return supplier
     }
 }

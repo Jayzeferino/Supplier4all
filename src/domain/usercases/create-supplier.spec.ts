@@ -26,4 +26,31 @@ describe('Create supplier user case', ()=>{
         
         
     })
+
+    it('should be not be able to create a supplier if email aready exists', async ()=>{
+
+        const inMemoryRepository = new InMemorySupplierRepository()
+
+        const sut= new CreateSupplier(inMemoryRepository)
+
+        const response = await sut.execute({
+            name: 'Navi',
+            contact: 62985786960,
+            email: 'exemplae@gmail.com'
+        })
+
+
+        try {
+            const response2 = await sut.execute({
+                name: 'Navi2',
+                contact: 62985786960,
+                email: 'exemplae@gmail.com'
+            })
+        } catch (error) {
+            expect(error).toBeInstanceOf(Error)
+
+        }
+        
+        
+    })
 })

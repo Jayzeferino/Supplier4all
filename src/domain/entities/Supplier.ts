@@ -5,6 +5,7 @@ type SupplierProps = {
     contact: number
     email?: string
     eccomerce?: string
+    category?: string
     instragramUrl?: string
     rate?: number
     createAt?: Date
