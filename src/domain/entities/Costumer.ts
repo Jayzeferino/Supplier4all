@@ -1,23 +1,17 @@
 import { Entity } from "../../core/domain/entity";
 import { Supplier } from "./Supplier";
 
-enum Status {
-    active= "Active",
-    inDebit="In Debit",
-    blocked="Blocked"
-}
 
 type  CostumerProps = {
     name: string,
     email: string,
-    phoneNumber: number,
-    password: number,
-    paymentStatus?: Status,
+    phoneNumber: string,
+    password: string,
+    paymentStatus?: string,
     paymentDate?: Date,
     paymentdueDate?: Date,
+    createdAt?: Date
 }
-
-
 
 export class Costumer extends Entity<CostumerProps> {
     private constructor(props: CostumerProps){
@@ -28,13 +22,14 @@ export class Costumer extends Entity<CostumerProps> {
         const costumer = new Costumer({...props, 
             paymentDate: props.paymentDate ?? new Date(),
             paymentdueDate: props.paymentdueDate ?? new Date(),
-            paymentStatus: props.paymentStatus ?? Status.active
+            paymentStatus: props.paymentStatus ?? "Active",
+            createdAt: props.createdAt ?? new Date()
         })
 
         return costumer
     }
 
-    public setCostumerState(status: Status) {
+    public setCostumerState(status: string) {
         this.props.paymentStatus = status
         
     }

@@ -2,33 +2,35 @@ import InMemoryCategoryRepository from "../../infra/repository/in-memory-categor
 import InMemorySupplierRepository from "../../infra/repository/in-memory-supplier- repository"
 import { CreateCategory } from "./create-category"
 import { CreateSupplier } from "./create-supplier"
-import { ListOneSupplier } from "./list-one-supplier"
+import { ListSupplierByCategory } from "./list-supplier-by-category"
 
-describe('Find One Supplier User Case', ()=>{
-    it('should be able to find one supplier by ID', async ()=>{
+describe('list suppliers by category', ()=>{
+    it('should be able to list suppliers by category', async ()=>{
 
-        const inMemoryRepository = new InMemorySupplierRepository()
+        const inMemorySupplierRepository = new InMemorySupplierRepository()
         const inMemoryCategoryRepo = new InMemoryCategoryRepository()
         const category = new CreateCategory(inMemoryCategoryRepo)
+
+        // creation of categories
         const Acessorios = await category.execute({
             name:"Acessorios para Celular"
         })
         const Moda = await category.execute({
             name:"Moda"
         })
-
-        const createSupplier = new CreateSupplier(inMemoryRepository)
+        // creation of suppliers
+        const createSupplier = new CreateSupplier(inMemorySupplierRepository)
         await createSupplier.execute({
             name: 'Roupas intimas',
             contact: 62985786960,
             category: Moda
         })
-        await createSupplier.execute({
+         const response = await createSupplier.execute({
             name: 'Excelencia moda maior',
             contact: 62985786960,
             category: Moda
         })
-        const {id} = await createSupplier.execute({
+        await createSupplier.execute({
             name: 'Navi',
             contact: 62985786960,
             category: Acessorios
@@ -39,10 +41,11 @@ describe('Find One Supplier User Case', ()=>{
             category: Acessorios
         })
 
-        const sut = new ListOneSupplier(inMemoryRepository)
-
-        const supplier = await sut.execute({id})
-        expect(supplier?.id).toBe(id)
-
+        const sut = new ListSupplierByCategory(inMemorySupplierRepository)
+        const suppliers = await sut.execute({
+            category: Moda
+        })
+        console.log(suppliers)
+        expect(suppliers).toBeTruthy()
     })
 })

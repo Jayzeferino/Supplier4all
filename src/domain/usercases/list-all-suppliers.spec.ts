@@ -1,4 +1,6 @@
+import InMemoryCategoryRepository from "../../infra/repository/in-memory-category-repository"
 import InMemorySupplierRepository from "../../infra/repository/in-memory-supplier- repository"
+import { CreateCategory } from "./create-category"
 import { CreateSupplier } from "./create-supplier"
 import { ListAllSuppliers } from "./list-all-suppliers"
 
@@ -6,21 +8,35 @@ describe('List Supplier User Case', ()=>{
     it('should be able list all suppliers', async ()=>{
 
         const inMemoryRepository = new InMemorySupplierRepository()
+        const inMemoryCategoryRepo = new InMemoryCategoryRepository()
+        const category = new CreateCategory(inMemoryCategoryRepo)
+        const Acessorios = await category.execute({
+            name:"Acessorios para Celular"
+        })
+        const Moda = await category.execute({
+            name:"Moda"
+        })
+
         const createSupplier = new CreateSupplier(inMemoryRepository)
+        await createSupplier.execute({
+            name: 'Roupas intimas',
+            contact: 62985786960,
+            category: Moda
+        })
+        await createSupplier.execute({
+            name: 'Excelencia moda maior',
+            contact: 62985786960,
+            category: Moda
+        })
         await createSupplier.execute({
             name: 'Navi',
             contact: 62985786960,
-            email: 'exemplae@gmail.com'
+            category: Acessorios
         })
         await createSupplier.execute({
-            name: 'Navi2',
+            name: 'Ninja das peliculas',
             contact: 62985786960,
-            email: 'exempla2e@gmail.com'
-        })
-        await createSupplier.execute({
-            name: 'Navi4',
-            contact: 62985786960,
-            email: 'exempla4e@gmail.com'
+            category: Acessorios
         })
 
         const sut = new ListAllSuppliers(inMemoryRepository)
