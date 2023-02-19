@@ -15,7 +15,6 @@
         "test": "jest"
     },
     "dependencies": {
-        "@types/validator": "^13.7.12",
         "validator": "^13.9.0"
     }
 }
