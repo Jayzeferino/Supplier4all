@@ -1,4 +1,4 @@
-import { FavoriteRepository } from "../../aplication/repository/FavoritesRepository";
+import { FavoriteRepository } from "../../../aplication/repository/FavoritesRepository";
 
 export class ListFavorites {
     public constructor(private favoritesRepository: FavoriteRepository)

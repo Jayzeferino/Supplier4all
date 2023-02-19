@@ -1,4 +1,5 @@
-import { SuppliersRepository } from "../../aplication/repository/SuppliersRepository"
+import { SuppliersRepository } from "../../../aplication/repository/SuppliersRepository";
+
 
 type ListOneSupplierRequest= {
     id: string

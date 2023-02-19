@@ -17,6 +17,7 @@ export class Costumer extends Entity<CostumerProps> {
     }
 
     static create (props: CostumerProps){
+        
         const costumer = new Costumer({...props, 
             paymentDate: props.paymentDate ?? new Date(),
             paymentdueDate: props.paymentdueDate ?? new Date(),

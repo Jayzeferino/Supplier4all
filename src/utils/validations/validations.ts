@@ -11,11 +11,3 @@ export class EmailValidator{
         return Validator.isEmail(email)
     }
 }
-
-// export class NameValidator{
-//     static isValid (email: string){
-//         if(!email){
-//             throw new MissingParameterError("email")
-//         }
-//     }
-// }
