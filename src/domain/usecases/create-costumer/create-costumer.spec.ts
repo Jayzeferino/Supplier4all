@@ -1,5 +1,5 @@
 import InMemoryCostumerRepository from "../../../infra/fakeRepositories/in-memory-costumer-repository"
-import { CreateCostumer } from "../create-costumer/create-costumer"
+import { CreateCostumer } from "./create-costumer"
 
 describe('Create costumer user case', ()=>{
     it('should be able to create a new costumer', async ()=>{
