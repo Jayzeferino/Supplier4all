@@ -1,4 +1,5 @@
 import InMemoryCostumerRepository from "../../../infra/fakeRepositories/in-memory-costumer-repository"
+import { InvalidParameterError } from "../../../utils/errors/invalidParameterError"
 import { CreateCostumer } from "./create-costumer"
 
 describe('Create costumer user case', ()=>{
@@ -22,6 +23,21 @@ describe('Create costumer user case', ()=>{
         expect(costumer).toHaveProperty('props.phoneNumber','6298687869');
         expect(costumer).toHaveProperty('props.email','JOhnDoe@gmail.com');
         expect(costumer).toHaveProperty('props.password','America1998');
+        
+    })
+    it('should not be able to create a costumer with incorret email', async ()=>{
+
+        const inMemoryRepository = new InMemoryCostumerRepository()
+
+        const sut= new CreateCostumer(inMemoryRepository)
+
+        const response = sut.execute({
+            name: 'JOhn DOe',
+            email: 'JOhnDoe@gmail.com',
+            password: 'America1998'
+        })
+
+        await expect(response).rejects.toThrowError(new InvalidParameterError("Insert a valid email"))
         
     })
 

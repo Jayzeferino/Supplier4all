@@ -5,8 +5,8 @@
 * Cosumer Password
 
 > ## FLUXO primário
-1. Buscar um usuario cadastrado pelo email
-2. Comparar o password cadastrado com o password fornecido no login
+1. Buscar um usuario cadastrado pelo email X
+2. Comparar o password cadastrado com o password fornecido no login X
 3. Gerar um token de acesso
 4. Retornar um token de acesso
 

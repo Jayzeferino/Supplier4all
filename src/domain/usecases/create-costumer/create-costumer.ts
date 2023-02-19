@@ -1,4 +1,6 @@
 import { CostumerRepository } from "../../../dataLayer/repository/CostumerRepository"
+import { InvalidParameterError } from "../../../utils/errors/invalidParameterError"
+import { EmailValidator } from "../../../utils/validations/validations"
 import { Costumer } from "../../entities/Costumer"
 
 type CreateCostumerRequest= {
@@ -22,7 +24,7 @@ export class CreateCostumer{
         const checkUniqueEmail = await this.costumerRepository.findByEmail(email)
         
         if(checkUniqueEmail != undefined){
-            throw new Error("Email aready used")
+            throw new InvalidParameterError("Email aready used")
         }
 
         await this.costumerRepository.save(costumer)
