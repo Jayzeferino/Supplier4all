@@ -1,4 +1,4 @@
-import { CostumerRepository } from "../../aplication/repository/CostumerRepository";
+import { CostumerRepository } from "../../dataLayer/repository/CostumerRepository";
 import { Costumer } from "../../domain/entities/Costumer";
 
 export default class InMemoryCostumerRepository implements CostumerRepository {

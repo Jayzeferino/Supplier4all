@@ -1,4 +1,4 @@
-import { CostumerRepository } from "../../../aplication/repository/CostumerRepository"
+import { CostumerRepository } from "../../../dataLayer/repository/CostumerRepository"
 import { Costumer } from "../../entities/Costumer"
 
 type CreateCostumerRequest= {

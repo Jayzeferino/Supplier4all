@@ -1,4 +1,4 @@
-import { SuppliersRepository } from "../../../aplication/repository/SuppliersRepository";
+import { SuppliersRepository } from "../../../dataLayer/repository/SuppliersRepository";
 
 
 export class ListAllSuppliers {

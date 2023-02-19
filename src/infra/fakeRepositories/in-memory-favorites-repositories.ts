@@ -1,4 +1,4 @@
-import { FavoriteRepository } from "../../aplication/repository/FavoritesRepository";
+import { FavoriteRepository } from "../../dataLayer/repository/FavoritesRepository";
 import { Favorite } from "../../domain/entities/Favorite";
 
 export default class InMemoryFavoritesRepository implements FavoriteRepository {

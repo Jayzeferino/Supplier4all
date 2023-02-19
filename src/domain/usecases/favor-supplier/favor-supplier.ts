@@ -1,4 +1,4 @@
-import { FavoriteRepository } from "../../../aplication/repository/FavoritesRepository"
+import { FavoriteRepository } from "../../../dataLayer/repository/FavoritesRepository"
 import { Costumer } from "../../entities/Costumer"
 import { Favorite } from "../../entities/Favorite"
 import { Supplier } from "../../entities/Supplier"

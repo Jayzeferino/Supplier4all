@@ -1,5 +1,5 @@
-import InMemoryCategoryRepository from "../../../dataLayer/fakeRepositories/in-memory-category-repository"
-import InMemorySupplierRepository from "../../../dataLayer/fakeRepositories/in-memory-supplier- repository"
+import InMemoryCategoryRepository from "../../../infra/fakeRepositories/in-memory-category-repository"
+import InMemorySupplierRepository from "../../../infra/fakeRepositories/in-memory-supplier- repository"
 import { CreateCategory } from "../create-category/create-category"
 import { CreateSupplier } from "./create-supplier"
 

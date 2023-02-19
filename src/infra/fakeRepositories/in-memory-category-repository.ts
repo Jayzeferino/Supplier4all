@@ -1,4 +1,4 @@
-import { CategoryRepository } from "../../aplication/repository/CategoryRepository";
+import { CategoryRepository } from "../../dataLayer/repository/CategoryRepository";
 import { Category } from "../../domain/entities/Category";
 
 export default class InMemoryCategoryRepository implements CategoryRepository {

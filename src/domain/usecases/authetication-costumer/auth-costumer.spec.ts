@@ -1,4 +1,4 @@
-import InMemoryCostumerRepository from "../../../dataLayer/fakeRepositories/in-memory-costumer-repository"
+import InMemoryCostumerRepository from "../../../infra/fakeRepositories/in-memory-costumer-repository"
 import { InvalidParameterError } from "../../../utils/errors/invalidParameterError"
 import { Costumer } from "../../entities/Costumer"
 import { CreateCostumer } from "../create-costumer/create-costumer"

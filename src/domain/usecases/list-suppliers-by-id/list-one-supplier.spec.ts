@@ -1,12 +1,12 @@
-import InMemoryCategoryRepository from "../../../dataLayer/fakeRepositories/in-memory-category-repository"
-import InMemorySupplierRepository from "../../../dataLayer/fakeRepositories/in-memory-supplier- repository"
+import InMemoryCategoryRepository from "../../../infra/fakeRepositories/in-memory-category-repository"
+import InMemorySupplierRepository from "../../../infra/fakeRepositories/in-memory-supplier- repository"
 import { CreateCategory } from "../create-category/create-category"
 import { CreateSupplier } from "../create-supplier/create-supplier"
-import { ListAllSuppliers } from "./list-all-suppliers"
+import { ListOneSupplier } from "./list-one-supplier"
 
 
-describe('List Supplier User Case', ()=>{
-    it('should be able list all suppliers', async ()=>{
+describe('Find One Supplier User Case', ()=>{
+    it('should be able to find one supplier by ID', async ()=>{
 
         const inMemoryRepository = new InMemorySupplierRepository()
         const inMemoryCategoryRepo = new InMemoryCategoryRepository()
@@ -29,7 +29,7 @@ describe('List Supplier User Case', ()=>{
             contact: 62985786960,
             category: Moda
         })
-        await createSupplier.execute({
+        const {id} = await createSupplier.execute({
             name: 'Navi',
             contact: 62985786960,
             category: Acessorios
@@ -40,10 +40,10 @@ describe('List Supplier User Case', ()=>{
             category: Acessorios
         })
 
-        const sut = new ListAllSuppliers(inMemoryRepository)
+        const sut = new ListOneSupplier(inMemoryRepository)
 
-        const suppliers = await sut.execute()
-        expect(suppliers).toBeTruthy()
+        const supplier = await sut.execute({id})
+        expect(supplier?.id).toBe(id)
 
     })
 })

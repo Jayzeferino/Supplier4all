@@ -1,4 +1,4 @@
-import InMemoryCostumerRepository from "../../../dataLayer/fakeRepositories/in-memory-costumer-repository"
+import InMemoryCostumerRepository from "../../../infra/fakeRepositories/in-memory-costumer-repository"
 import { CreateCostumer } from "../create-costumer/create-costumer"
 
 describe('Create costumer user case', ()=>{
