@@ -1,4 +1,6 @@
-[ ] Deve ser possivel criar um usuario 
-[ ] O usuario tem um login usando email e senha
-[ ] Um usuario não pode ter o mesmo email
-[ ] Fornecedores podem ser listados por categoria e por id
+[x] Deve ser possivel criar um cliente 
+[x] O cliente possui um email unico
+[x] Fornecedores podem ser listados por categoria e por id
+[ ] O usuario deve fazer login usando email e senha
+[ ] Um cliente pode favoritar um fornecedor
+[ ] Um cliente deve fazer login com email e senha

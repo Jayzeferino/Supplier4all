@@ -6,7 +6,7 @@ export class ListAllSuppliers {
      async execute(){
         const suppliers = await this.supplierRepository.findall()
         if (!suppliers){
-            throw new Error("dont exists suppliers to show");
+            throw new Error("dont exists suppliers");
         }
         return suppliers
     }

@@ -1,6 +1,6 @@
-import { SuppliersRepository } from "../../aplication/repository/SuppliersRepository"
-import { Category } from "../entities/Category"
-import { Supplier } from "../entities/Supplier"
+import { SuppliersRepository } from "../../../aplication/repository/SuppliersRepository"
+import { Category } from "../../entities/Category"
+import { Supplier } from "../../entities/Supplier"
 
 type CreateSupplierRequest= {
     name: string

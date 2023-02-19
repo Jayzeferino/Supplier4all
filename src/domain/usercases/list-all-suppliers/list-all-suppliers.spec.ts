@@ -1,8 +1,9 @@
-import InMemoryCategoryRepository from "../../infra/repository/in-memory-category-repository"
-import InMemorySupplierRepository from "../../infra/repository/in-memory-supplier- repository"
-import { CreateCategory } from "./create-category"
-import { CreateSupplier } from "./create-supplier"
+import InMemoryCategoryRepository from "../../../dataLayer/fakeRepositories/in-memory-category-repository"
+import InMemorySupplierRepository from "../../../dataLayer/fakeRepositories/in-memory-supplier- repository"
+import { CreateCategory } from "../create-category/create-category"
+import { CreateSupplier } from "../create-supplier/create-supplier"
 import { ListAllSuppliers } from "./list-all-suppliers"
+
 
 describe('List Supplier User Case', ()=>{
     it('should be able list all suppliers', async ()=>{

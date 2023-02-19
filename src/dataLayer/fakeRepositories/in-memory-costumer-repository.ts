@@ -11,8 +11,6 @@ export default class InMemoryCostumerRepository implements CostumerRepository {
             throw new Error("Not is possible to create a new Costumer")
             return;
         }
-    
-        
         this.costumers.push(costumer);
         return costumer;
                

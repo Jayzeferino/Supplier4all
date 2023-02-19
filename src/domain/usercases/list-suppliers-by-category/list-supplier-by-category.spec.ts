@@ -1,8 +1,10 @@
-import InMemoryCategoryRepository from "../../infra/repository/in-memory-category-repository"
-import InMemorySupplierRepository from "../../infra/repository/in-memory-supplier- repository"
-import { CreateCategory } from "./create-category"
-import { CreateSupplier } from "./create-supplier"
+import InMemoryCategoryRepository from "../../../dataLayer/fakeRepositories/in-memory-category-repository"
+import InMemorySupplierRepository from "../../../dataLayer/fakeRepositories/in-memory-supplier- repository"
+import { CreateCategory } from "../create-category/create-category"
+import { CreateSupplier } from "../create-supplier/create-supplier"
 import { ListSupplierByCategory } from "./list-supplier-by-category"
+
+
 
 describe('list suppliers by category', ()=>{
     it('should be able to list suppliers by category', async ()=>{
@@ -32,12 +34,12 @@ describe('list suppliers by category', ()=>{
         })
         await createSupplier.execute({
             name: 'Navi',
-            contact: 62985786960,
+            contact: 62985786923,
             category: Acessorios
         })
         await createSupplier.execute({
             name: 'Ninja das peliculas',
-            contact: 62985786960,
+            contact: 62985786923,
             category: Acessorios
         })
 

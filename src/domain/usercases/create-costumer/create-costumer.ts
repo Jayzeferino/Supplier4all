@@ -1,10 +1,10 @@
-import { CostumerRepository } from "../../aplication/repository/CostumerRepository"
-import { Costumer } from "../entities/Costumer"
+import { CostumerRepository } from "../../../aplication/repository/CostumerRepository"
+import { Costumer } from "../../entities/Costumer"
 
 type CreateCostumerRequest= {
     name: string
     email: string
-    phoneNumber: string
+    phoneNumber?: string
     password: string
 }
 
@@ -26,6 +26,7 @@ export class CreateCostumer{
         }
 
         await this.costumerRepository.save(costumer)
+        
         return costumer
     }
 }

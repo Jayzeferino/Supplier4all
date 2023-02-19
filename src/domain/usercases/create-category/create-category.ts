@@ -1,5 +1,5 @@
-import { CategoryRepository } from "../../aplication/repository/CategoryRepository"
-import { Category } from "../entities/Category"
+import { CategoryRepository } from "../../../aplication/repository/CategoryRepository"
+import { Category } from "../../entities/Category"
 
 type CreateCategoryRequest = {
     name: string

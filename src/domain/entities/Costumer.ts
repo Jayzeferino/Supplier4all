@@ -1,11 +1,9 @@
 import { Entity } from "../../core/domain/entity";
-import { Supplier } from "./Supplier";
-
 
 type  CostumerProps = {
     name: string,
     email: string,
-    phoneNumber: string,
+    phoneNumber?: string,
     password: string,
     paymentStatus?: string,
     paymentDate?: Date,

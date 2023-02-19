@@ -1,5 +1,6 @@
-import { SuppliersRepository } from "../../aplication/repository/SuppliersRepository"
-import { Category } from "../entities/Category"
+import { SuppliersRepository } from "../../../aplication/repository/SuppliersRepository"
+import { Category } from "../../entities/Category"
+
 
 type ListSupplierByCategoryRequest = {
     category: Category

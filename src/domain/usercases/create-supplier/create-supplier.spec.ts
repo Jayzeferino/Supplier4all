@@ -1,6 +1,6 @@
-import InMemoryCategoryRepository from "../../infra/repository/in-memory-category-repository"
-import InMemorySupplierRepository from "../../infra/repository/in-memory-supplier- repository"
-import { CreateCategory } from "./create-category"
+import InMemoryCategoryRepository from "../../../dataLayer/fakeRepositories/in-memory-category-repository"
+import InMemorySupplierRepository from "../../../dataLayer/fakeRepositories/in-memory-supplier- repository"
+import { CreateCategory } from "../create-category/create-category"
 import { CreateSupplier } from "./create-supplier"
 
 
@@ -16,7 +16,7 @@ describe('Create supplier user case', ()=>{
 
         const sut= new CreateSupplier(inMemoryRepository)
 
-        const response = await sut.execute({
+        await sut.execute({
             name: 'Navi',
             contact: 62985786960,
             category: categorymock

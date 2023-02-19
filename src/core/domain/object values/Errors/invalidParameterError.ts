@@ -3,6 +3,6 @@
         super(errormsg)
         Object.setPrototypeOf(this,InvalidParameterError.prototype)
         this.name = "400"
-        this.message = "Invalid Parameter Error"
+        this.message = errormsg
     }
  }
