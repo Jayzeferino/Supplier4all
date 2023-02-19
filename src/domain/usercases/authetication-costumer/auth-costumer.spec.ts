@@ -47,10 +47,17 @@ describe('Authentication costumer user case', ()=>{
         expect(response.id).toBe(costumer.id)
                 
     })
+    it('should be albe to a compare a password', async ()=>{
+
+        const { sut , costumerRepository , costumer} =  await makeSut()
+        const response = await sut.execute("johndoe@gmail.com","33183321")
+        expect(response).toBe(costumer)
+    })
     it('should throw if password or email are wrong', async ()=>{
 
         const { sut , costumerRepository , costumer} =  await makeSut()
         const response = sut.execute("johndoe@gmail.com","33183322")
         await expect(response).rejects.toThrowError(new InvalidParameterError("Email or password passed are wrong"))
     })
+    
 })

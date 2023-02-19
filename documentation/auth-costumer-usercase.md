@@ -14,6 +14,6 @@
 1. retornar Erro
 >## Fluxo alternativo - Password fornecido não confere com o cadastrado 
 1. retornar Erro
->## Fluxo alternativo - Se usuario tentar 5 x a senha errada 
+>## (optional) Fluxo alternativo - Se usuario tentar 5 x a senha errada 
 1. o email deve ser bloqueado de fazer login por um tempo 
 2. retornar Erro
