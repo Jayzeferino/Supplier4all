@@ -1,5 +1,5 @@
 import { Entity } from "../../core/domain/entity";
-import { InvalidParameterError } from "../../core/domain/object values/Errors/invalidParameterError";
+import { InvalidParameterError } from "../../utils/errors/invalidParameterError";
 import { Costumer } from "./Costumer";
 import { Supplier } from "./Supplier";
 

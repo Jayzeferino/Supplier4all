@@ -1,6 +1,6 @@
 import { Entity } from "../../core/domain/entity";
 
-type  CostumerProps = {
+type CostumerProps = {
     name: string,
     email: string,
     phoneNumber?: string,
@@ -35,4 +35,5 @@ export class Costumer extends Entity<CostumerProps> {
     public getCostumerState() {
         return this.props.paymentStatus
     }
+
 }
