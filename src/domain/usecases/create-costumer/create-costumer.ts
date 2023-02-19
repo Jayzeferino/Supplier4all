@@ -1,6 +1,6 @@
 import { CostumerRepository } from "../../../dataLayer/repository/CostumerRepository"
 import { InvalidParameterError } from "../../../utils/errors/invalidParameterError"
-import { EmailValidator } from "../../../utils/validations/validations"
+import { emailIsValid } from "../../../utils/validations/validations"
 import { Costumer } from "../../entities/Costumer"
 
 type CreateCostumerRequest= {
@@ -17,6 +17,12 @@ export class CreateCostumer{
 
     async execute({ name,email, phoneNumber, password} : CreateCostumerRequest){
        
+        const validEmail = await emailIsValid(email)
+
+        if(validEmail == false){
+            throw new InvalidParameterError("Invalid email")
+        }
+
         const costumer = Costumer.create({
             name,email,phoneNumber,password
         })

@@ -1,13 +1,11 @@
 
-import { MissingParameterError } from '../errors/missingParameterError';
+import { InvalidParameterError } from '../errors/invalidParameterError';
 import Validator from 'validator';
 
-export class EmailValidator{
-    public isValid (email: string){
-        if(!email){
-            throw new MissingParameterError("email")
-        }
-       
-        return Validator.isEmail(email)
+export async function emailIsValid(email: string) {
+    if(!email){
+        throw new InvalidParameterError("email")
     }
+   
+    return Validator.isEmail(email)    
 }

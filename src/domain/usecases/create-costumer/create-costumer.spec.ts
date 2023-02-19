@@ -25,6 +25,7 @@ describe('Create costumer user case', ()=>{
         expect(costumer).toHaveProperty('props.password','America1998');
         
     })
+
     it('should not be able to create a costumer with incorret email', async ()=>{
 
         const inMemoryRepository = new InMemoryCostumerRepository()
@@ -33,11 +34,11 @@ describe('Create costumer user case', ()=>{
 
         const response = sut.execute({
             name: 'JOhn DOe',
-            email: 'JOhnDoe@gmail.com',
+            email: 'JOhnDoe@a',
             password: 'America1998'
         })
 
-        await expect(response).rejects.toThrowError(new InvalidParameterError("Insert a valid email"))
+        await expect(response).rejects.toThrowError(new InvalidParameterError("Invalid email"))
         
     })
 
