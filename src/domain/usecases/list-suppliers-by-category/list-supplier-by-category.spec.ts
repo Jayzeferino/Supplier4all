@@ -47,7 +47,7 @@ describe('list suppliers by category', ()=>{
         const suppliers = await sut.execute({
             category: Moda
         })
-        console.log(suppliers)
+        
         expect(suppliers).toBeTruthy()
     })
 })

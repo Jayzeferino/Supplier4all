@@ -2,6 +2,7 @@ import { CostumerRepository } from "../../../dataLayer/repository/CostumerReposi
 import { InvalidParameterError } from "../../../utils/errors/invalidParameterError"
 import { emailIsValid } from "../../../utils/validations/validations"
 import { Costumer } from "../../entities/Costumer"
+import { CryptoEncrypter } from "../../helper/crypto-encrypter"
 
 type CreateCostumerRequest= {
     name: string
@@ -12,7 +13,7 @@ type CreateCostumerRequest= {
 
 export class CreateCostumer{
     
-    public constructor(private costumerRepository: CostumerRepository)
+    public constructor(private costumerRepository: CostumerRepository, private readonly encrypter: CryptoEncrypter)
     {}
 
     async execute({ name,email, phoneNumber, password} : CreateCostumerRequest){
@@ -23,8 +24,9 @@ export class CreateCostumer{
             throw new InvalidParameterError("Invalid email")
         }
 
+        const hashedPassword = await this.encrypter.hash(password)
         const costumer = Costumer.create({
-            name,email,phoneNumber,password
+            name,email,phoneNumber, password: hashedPassword
         })
 
         const checkUniqueEmail = await this.costumerRepository.findByEmail(email)

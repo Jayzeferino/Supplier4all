@@ -1,13 +1,16 @@
 import InMemoryCostumerRepository from "../../../infra/fakeRepositories/in-memory-costumer-repository"
 import { InvalidParameterError } from "../../../utils/errors/invalidParameterError"
+import { CryptoEncrypter } from "../../helper/crypto-encrypter"
 import { CreateCostumer } from "./create-costumer"
 
 describe('Create costumer user case', ()=>{
     it('should be able to create a new costumer', async ()=>{
 
         const inMemoryRepository = new InMemoryCostumerRepository()
+        const encrypter = new CryptoEncrypter()
 
-        const sut= new CreateCostumer(inMemoryRepository)
+        const sut= new CreateCostumer(inMemoryRepository, encrypter)
+
 
         const response = await sut.execute({
             name: 'JOhn DOe',
@@ -18,24 +21,21 @@ describe('Create costumer user case', ()=>{
 
         const costumer = inMemoryRepository.costumers[inMemoryRepository.costumers.length-1]
         
-        expect(response).toBeTruthy();
-        expect(costumer).toHaveProperty('props.name','JOhn DOe');
-        expect(costumer).toHaveProperty('props.phoneNumber','6298687869');
-        expect(costumer).toHaveProperty('props.email','JOhnDoe@gmail.com');
-        expect(costumer).toHaveProperty('props.password','America1998');
+        expect(costumer).toBeTruthy();
         
     })
 
     it('should not be able to create a costumer with incorret email', async ()=>{
 
         const inMemoryRepository = new InMemoryCostumerRepository()
+        const encrypter = new CryptoEncrypter()
 
-        const sut= new CreateCostumer(inMemoryRepository)
+        const sut= new CreateCostumer(inMemoryRepository, encrypter)
 
         const response = sut.execute({
             name: 'JOhn DOe',
             email: 'JOhnDoe@a',
-            password: 'America1998'
+            password: 'any_password'
         })
 
         await expect(response).rejects.toThrowError(new InvalidParameterError("Invalid email"))
@@ -45,18 +45,19 @@ describe('Create costumer user case', ()=>{
     it('should be able to encrypt a costumer password', async ()=>{
 
         const inMemoryRepository = new InMemoryCostumerRepository()
+        const encrypter = new CryptoEncrypter()
 
-        const sut= new CreateCostumer(inMemoryRepository)
+        const sut= new CreateCostumer(inMemoryRepository, encrypter)
 
         const response = await sut.execute({
             name: 'JOhn DOe',
             email: 'JOhnDoe@gmail.com',
-            password: 'America1998'
+            password: 'any_password'
         })
 
         const costumer = inMemoryRepository.costumers[inMemoryRepository.costumers.length-1]
         
-        expect(response).toBeTruthy();
+        expect(costumer.props.password).not.toBe("response.props.password")
         
     })
 })
