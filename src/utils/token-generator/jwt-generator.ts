@@ -3,12 +3,18 @@ import jwt from 'jsonwebtoken';
 
 
 export class JwtGenerator implements TokenGenerator{
+    constructor(private readonly secretKey: string){
+        this.secretKey = secretKey
+    }
+    
     async generate(costumer_id: string): Promise<string | undefined> {
         if(!costumer_id){
             throw new Error("Id is null")
         }
-        const secretKey: string = "gfg_jwt_secret_key"
-        return jwt.sign({ costumer_id }, 'secretkey');
+        if(!this.secretKey){
+            throw new Error("secret is null")
+        }
+        return jwt.sign({ costumer_id }, this.secretKey);
     }
 
 }
