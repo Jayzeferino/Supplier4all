@@ -1,6 +1,7 @@
 import InMemoryCostumerRepository from "../../../infra/fakeRepositories/in-memory-costumer-repository"
+import { CryptoEncrypter } from "../../../utils/crypto-encrypt/crypto-encrypter"
 import { InvalidParameterError } from "../../../utils/errors/invalidParameterError"
-import { CryptoEncrypter } from "../../helper/crypto-encrypter"
+
 import { CreateCostumer } from "./create-costumer"
 
 describe('Create costumer user case', ()=>{

@@ -2,9 +2,10 @@ import InMemoryCostumerRepository from "../../../infra/fakeRepositories/in-memor
 import { InvalidParameterError } from "../../../utils/errors/invalidParameterError"
 import { MissingParameterError } from "../../../utils/errors/missingParameterError"
 import { Encrypter } from "../../helper/encrypter"
+import { TokenGenerator } from "../../helper/token-generator"
 
 export class AuthCostumer{
-    public constructor( private readonly inMemoryCostumerRepository : InMemoryCostumerRepository, private readonly encrypter: Encrypter )
+    public constructor( private readonly inMemoryCostumerRepository : InMemoryCostumerRepository, private readonly encrypter: Encrypter , private readonly tokenGenerator: TokenGenerator )
     {}
     public async execute(email: string, password: string){
 
@@ -25,6 +26,8 @@ export class AuthCostumer{
         if (!isValid){
             throw new InvalidParameterError("Email or password passed are wrong")
         }
+
+        await this.tokenGenerator.generate(costumer.id)
         return costumer
 
     }
