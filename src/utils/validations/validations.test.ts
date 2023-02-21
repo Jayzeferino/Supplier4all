@@ -1,4 +1,3 @@
-import validator from 'validator';
 import { emailIsValid } from './validations';
 
 describe('Create supplier user case', ()=>{
