@@ -1,14 +1,14 @@
+import { FavoriteModel } from "src/@core/dataLayer/models/favorite";
 import { FavoriteRepository } from "../../dataLayer/repository/FavoritesRepository";
-import { Costumer } from "../../domain/entities/Costumer";
-import { Favorite } from "../../domain/entities/Favorite";
-import { Supplier } from "../../domain/entities/Supplier";
+import { CostumerModel } from "src/@core/dataLayer/models/costumer";
+import { SupplierModel } from "src/@core/dataLayer/models/supplier";
 
 export default class InMemoryFavoritesRepository implements FavoriteRepository {
 
     
-    public favorites: Favorite[] = []
+    public favorites: FavoriteModel[] = []
 
-    async save(favorite: Favorite): Promise<Favorite | undefined> {
+    async save(favorite: FavoriteModel): Promise<FavoriteModel | undefined> {
         
         if(!favorite){
             throw new Error("Not is possible favorite ")
@@ -21,8 +21,8 @@ export default class InMemoryFavoritesRepository implements FavoriteRepository {
                
     }
 
-    async findAllOfACostumerFavoritesSupplier(costumer: Costumer): Promise<Supplier[] | null> {
-        const favoList: Supplier[]=[]
+    async findAllOfACostumerFavoritesSupplier(costumer: CostumerModel): Promise<SupplierModel[] | null> {
+        const favoList: SupplierModel[]=[]
 
         await this.favorites?.map((favorite)=>{
             if( favorite.props.costumer.id === costumer.id){
@@ -33,8 +33,8 @@ export default class InMemoryFavoritesRepository implements FavoriteRepository {
         return favoList
         
     }
-    async findFavoSupplierByCostumerId(supplier: Supplier, costumer: Costumer): Promise<Supplier | undefined> {
-        const listFavorite: Supplier[]= []
+    async findFavoSupplierByCostumerId(supplier: SupplierModel, costumer: CostumerModel): Promise<SupplierModel | undefined> {
+        const listFavorite: SupplierModel[]= []
         await this.favorites?.map((favorite)=>{
             if( favorite.props.costumer.id === costumer.id && favorite.props.supplier.id===supplier.id){
                 listFavorite.push(favorite.props.supplier)

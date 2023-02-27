@@ -12,7 +12,7 @@ type CostumerProps = {
 }
 
 export class Costumer extends Entity<CostumerProps> {
-    private constructor(props: CostumerProps){
+    constructor(props: CostumerProps){
        super(props)
     }
 

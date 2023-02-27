@@ -7,7 +7,7 @@ type CategoryProps={
 
 export class Category extends Entity<CategoryProps>{
 
-    private constructor(props: CategoryProps){
+    constructor(props: CategoryProps){
         super(props)
      }
  

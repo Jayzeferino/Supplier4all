@@ -9,7 +9,7 @@ type FavoriteProps= {
 }
 
 export class Favorite extends Entity<FavoriteProps>{
-    private constructor(props: FavoriteProps){
+    constructor(props: FavoriteProps){
         super(props)
      }
 

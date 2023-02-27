@@ -14,7 +14,7 @@ type SupplierProps = {
 
 export class Supplier extends Entity<SupplierProps> {
     
-     private constructor(props: SupplierProps){
+     constructor(props: SupplierProps){
         super(props)
         
      }
