@@ -1,21 +1,24 @@
 import { SupplierModel } from "src/@core/dataLayer/models/supplier";
 import { SuppliersRepository } from "../../dataLayer/repository/SuppliersRepository";
 import { Supplier } from "../../domain/entities/Supplier";
+import { CreateSupplierDto } from "src/@core/shared/dtos/supplier/create-supplier.dto";
+import { SupplierMapper } from "src/@core/dataLayer/mappers/supplier-mapper";
 
 export default class InMemorySupplierRepository implements SuppliersRepository {
-    
-    public suppliers: SupplierModel[] = []
-
-    async save(supplier: SupplierModel): Promise<SupplierModel | undefined> {
-        
+    save(supplier: SupplierModel): Promise<SupplierModel> {
+       
         if(!supplier){
             throw new Error("Not is possible to create a new Supplier")
             return;
         }
         this.suppliers.push(supplier);
-        return supplier;
-               
+    
+        return supplier
     }
+    
+    public suppliers: SupplierModel[] = []
+
+   
     async findById(id: string): Promise<SupplierModel | undefined> {
 
         const supplier = this.suppliers.find(supplier => supplier.id === id) 

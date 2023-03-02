@@ -1,3 +1,4 @@
+import { SupplierMapper } from "src/@core/dataLayer/mappers/supplier-mapper"
 import { SuppliersRepository } from "../../../dataLayer/repository/SuppliersRepository"
 import { Category } from "../../entities/Category"
 import { Supplier } from "../../entities/Supplier"
@@ -15,7 +16,6 @@ export class CreateSupplier{
     
     public constructor(private supplierRepository: SuppliersRepository)
     {}
-
     async execute({ name , contact, email , eccomerce , category , instragramUrl} : CreateSupplierRequest){
         const supplier = Supplier.create({
             name,
@@ -25,7 +25,7 @@ export class CreateSupplier{
             category,
             instragramUrl
         })
-
+        
         if (email==undefined) {
             await this.supplierRepository.save(supplier)
             return supplier
@@ -35,6 +35,7 @@ export class CreateSupplier{
         if(checkUniqueEmail != undefined){
             throw new Error("Email aready used")
         }
+
         await this.supplierRepository.save(supplier)
         return supplier
     }

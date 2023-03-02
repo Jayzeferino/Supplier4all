@@ -1,9 +1,9 @@
-import { Costumer } from "../../domain/entities/Costumer"
+import { CostumerModel } from "../models/costumer"
 
 
 export interface CostumerRepository{
-   save(costumer: Costumer): Promise<Costumer | undefined>
-   findById(id: string): Promise<Costumer | undefined>
-   findByEmail(email: string): Promise<Costumer | undefined>
-   findall(): Promise<Costumer[]| null>
+   save(costumer: CostumerModel): Promise<CostumerModel | undefined>
+   findById(id: string): Promise<CostumerModel | undefined>
+   findByEmail(email: string): Promise<CostumerModel | undefined>
+   findall(): Promise<CostumerModel[]| null>
 }

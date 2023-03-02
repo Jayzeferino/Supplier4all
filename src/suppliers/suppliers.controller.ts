@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { SuppliersService } from './suppliers.service';
-import { CreateSupplierDto } from './dto/create-supplier.dto';
-import { UpdateSupplierDto } from './dto/update-supplier.dto';
+import { Controller, Get, Post, Body} from '@nestjs/common';
+import { CreateSupplierDto } from '../@core/shared/dtos/supplier/create-supplier.dto';
 import { CreateSupplier } from 'src/@core/domain/usecases/create-supplier/create-supplier';
 import { ListAllSuppliers } from 'src/@core/domain/usecases/list-all-suppliers/list-all-suppliers';
+import { SupplierMapper } from '../@core/dataLayer/mappers/supplier-mapper';
+import InMemoryCategoryRepository from '../@core/infra/fakeRepositories/in-memory-category-repository';
 
 @Controller('suppliers')
 export class SuppliersController {
@@ -13,8 +13,19 @@ export class SuppliersController {
   }
 
   @Post()
-  create(@Body() createSupplierDto: CreateSupplierDto) {
-    return this.createSupplier.execute(createSupplierDto);
+  async create(@Body() createSupplierDto: CreateSupplierDto) {
+    const mapper = new SupplierMapper()
+    const repository = new InMemoryCategoryRepository()
+    const supplier = await mapper.mapFrom(createSupplierDto, repository)
+    return this.createSupplier.execute({
+      name: supplier.props.name,
+      contact: supplier.props.contact,
+      category: supplier.props.category, 
+      email:supplier.props.email, 
+      eccomerce:supplier.props.eccomerce,
+      instragramUrl:supplier.props.instragramUrl
+      
+    });
   }
 
   @Get()

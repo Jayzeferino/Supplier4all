@@ -1,26 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { CreateSupplierDto } from './dto/create-supplier.dto';
+import { CreateSupplierDto } from '../@core/shared/dtos/supplier/create-supplier.dto';
 import { UpdateSupplierDto } from './dto/update-supplier.dto';
+import { SuppliersRepository } from 'src/@core/dataLayer/repository/SuppliersRepository';
+import { SupplierModel } from 'src/@core/dataLayer/models/supplier';
 
 @Injectable()
-export class SuppliersService {
-  create(createSupplierDto: CreateSupplierDto) {
-    return 'This action adds a new supplier';
+export class SuppliersService implements SuppliersRepository {
+  save(supplier: SupplierModel): Promise<SupplierModel> {
+    throw new Error('Method not implemented.');
   }
-
-  findAll() {
-    return `This action returns all suppliers`;
+  findById(id: string): Promise<SupplierModel> {
+    throw new Error('Method not implemented.');
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} supplier`;
+  findByCategory(id: string): Promise<SupplierModel[]> {
+    throw new Error('Method not implemented.');
   }
-
-  update(id: number, updateSupplierDto: UpdateSupplierDto) {
-    return `This action updates a #${id} supplier`;
+  findByEmail(email: string): Promise<SupplierModel> {
+    throw new Error('Method not implemented.');
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} supplier`;
+  findall(): Promise<SupplierModel[]> {
+    throw new Error('Method not implemented.');
   }
 }

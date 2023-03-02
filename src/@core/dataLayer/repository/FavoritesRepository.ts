@@ -1,9 +1,9 @@
-import { Costumer } from "../../domain/entities/Costumer"
-import { Favorite } from "../../domain/entities/Favorite"
-import { Supplier } from "../../domain/entities/Supplier"
+import { CostumerModel } from "../models/costumer"
+import { FavoriteModel } from "../models/favorite"
+import { SupplierModel } from "../models/supplier"
 
 export interface FavoriteRepository{
-    save(favorite: Favorite): Promise<Favorite | undefined>
-    findAllOfACostumerFavoritesSupplier(costumer: Costumer): Promise<Supplier[]| null>
-    findFavoSupplierByCostumerId(supplier: Supplier,costumer: Costumer): Promise< Supplier | undefined> 
+    save(favorite: FavoriteModel): Promise<FavoriteModel | undefined>
+    findAllOfACostumerFavoritesSupplier(costumer: CostumerModel): Promise<SupplierModel[]| null>
+    findFavoSupplierByCostumerId(supplier: SupplierModel,costumer: CostumerModel): Promise< SupplierModel | undefined> 
  }

@@ -1,4 +1,5 @@
-import { Category } from "src/category/entities/category.entity";
+import { Category } from "src/@core/domain/entities/Category";
+
 
 export class CategoryModel extends Category{
 

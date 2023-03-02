@@ -1,5 +1,5 @@
-import { Supplier } from "src/@core/domain/entities/Supplier";
+import { Supplier } from "../../domain/entities/Supplier";
 
 export class SupplierModel extends Supplier{
-
+    
 }

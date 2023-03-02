@@ -1,4 +1,5 @@
-import { Supplier } from "../../domain/entities/Supplier";
+import { Supplier } from "src/@core/domain/entities/Supplier";
+
 
 export interface SuppliersRepository{
    save(supplier: Supplier): Promise<Supplier | undefined>

@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCategoryDto } from './dto/create-category.dto';
+import { CreateCategoryDto } from '../@core/shared/dtos/category/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { categoryMapper } from 'src/@core/dataLayer/mappers/category-mapper';
+import { CreateCategory } from 'src/@core/domain/usecases/create-category/create-category';
 
 @Injectable()
 export class CategoryService {
   create(createCategoryDto: CreateCategoryDto) {
-    return 'This action adds a new category';
+    return `This action returns all category`;
   }
 
   findAll() {
