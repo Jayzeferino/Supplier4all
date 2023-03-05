@@ -7,12 +7,11 @@ import InMemoryCategoryRepository from '../@core/infra/fakeRepositories/in-memor
 
 @Controller('suppliers')
 export class SuppliersController {
-  // constructor(private readonly suppliersService: SuppliersService) {}
   constructor( private createSupplier: CreateSupplier, private listAllSuppliers: ListAllSuppliers){
 
   }
 
-  @Post()
+  @Post(`/create`)
   async create(@Body() createSupplierDto: CreateSupplierDto) {
     const mapper = new SupplierMapper()
     const repository = new InMemoryCategoryRepository()

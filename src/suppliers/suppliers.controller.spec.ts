@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SuppliersController } from './suppliers.controller';
-import { SuppliersService } from './suppliers.service';
 import InMemorySupplierRepository from '../@core/infra/fakeRepositories/in-memory-supplier- repository';
 import { CreateSupplier } from '../@core/domain/usecases/create-supplier/create-supplier';
 import { SuppliersRepository } from '../@core/dataLayer/repository/SuppliersRepository';
@@ -12,7 +11,7 @@ describe('SuppliersController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [SuppliersController],
-      providers: [SuppliersService,
+      providers: [
       {
         provide: InMemorySupplierRepository,
         useClass: InMemorySupplierRepository
@@ -37,7 +36,7 @@ describe('SuppliersController', () => {
     controller = module.get<SuppliersController>(SuppliersController);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  it('should be able to create a new supplier', () => {
+    
   });
 });

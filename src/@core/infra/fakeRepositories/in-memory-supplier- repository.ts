@@ -1,10 +1,9 @@
 import { SupplierModel } from "src/@core/dataLayer/models/supplier";
 import { SuppliersRepository } from "../../dataLayer/repository/SuppliersRepository";
-import { Supplier } from "../../domain/entities/Supplier";
-import { CreateSupplierDto } from "src/@core/shared/dtos/supplier/create-supplier.dto";
-import { SupplierMapper } from "src/@core/dataLayer/mappers/supplier-mapper";
 
 export default class InMemorySupplierRepository implements SuppliersRepository {
+    public suppliers: SupplierModel[] = []
+
     save(supplier: SupplierModel): Promise<SupplierModel> {
        
         if(!supplier){
@@ -13,11 +12,8 @@ export default class InMemorySupplierRepository implements SuppliersRepository {
         }
         this.suppliers.push(supplier);
     
-        return supplier
+        return 
     }
-    
-    public suppliers: SupplierModel[] = []
-
    
     async findById(id: string): Promise<SupplierModel | undefined> {
 

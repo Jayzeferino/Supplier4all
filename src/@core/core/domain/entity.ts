@@ -1,4 +1,4 @@
-import crypto from 'crypto'
+import * as crypto from "crypto";
 
 export abstract class Entity<T> {
     protected _id: string;

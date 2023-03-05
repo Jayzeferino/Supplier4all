@@ -6,7 +6,7 @@ export default class InMemoryCategoryRepository implements CategoryRepository {
 
     public categories: CategoryModel[] = []
 
-    async save(category: CategoryModel): Promise<CategoryModel | undefined> {
+     save(category: CategoryModel): Promise<CategoryModel> {
         
         if(!category){
             throw new Error("Not is possible to create a new Category")
@@ -14,7 +14,7 @@ export default class InMemoryCategoryRepository implements CategoryRepository {
         }
         
         this.categories.push(category);
-        return category;
+        return 
                
     }
     async findById(id: string): Promise<CategoryModel | undefined> {
@@ -28,8 +28,9 @@ export default class InMemoryCategoryRepository implements CategoryRepository {
     }
 
    async findall(): Promise<CategoryModel[] | null> {
+       
         
-       return this.categories
+        return this.categories
    }
 
 

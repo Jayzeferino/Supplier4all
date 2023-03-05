@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { SuppliersService } from './suppliers.service';
+// import { SuppliersService } from './suppliers.service';
 import { SuppliersController } from './suppliers.controller';
 import InMemorySupplierRepository from 'src/@core/infra/fakeRepositories/in-memory-supplier- repository';
 import { CreateSupplier } from 'src/@core/domain/usecases/create-supplier/create-supplier';
@@ -8,7 +8,7 @@ import { ListAllSuppliers } from 'src/@core/domain/usecases/list-all-suppliers/l
 
 @Module({
   controllers: [SuppliersController],
-  providers: [SuppliersService,
+  providers: [
   {
     provide: InMemorySupplierRepository,
     useClass: InMemorySupplierRepository

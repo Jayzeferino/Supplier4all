@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCategoryDto } from '../@core/shared/dtos/category/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+// import { UpdateCategoryDto } from './dto/update-category.dto';
 import { categoryMapper } from 'src/@core/dataLayer/mappers/category-mapper';
 import { CreateCategory } from 'src/@core/domain/usecases/create-category/create-category';
 
@@ -18,9 +18,9 @@ export class CategoryService {
     return `This action returns a #${id} category`;
   }
 
-  update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
-  }
+  // update(id: number, updateCategoryDto: UpdateCategoryDto) {
+  //   return `This action updates a #${id} category`;
+  // }
 
   remove(id: number) {
     return `This action removes a #${id} category`;
