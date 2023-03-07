@@ -4,8 +4,10 @@ import { CategoryModel } from "src/@core/dataLayer/models/category";
 
 export default class InMemoryCategoryRepository implements CategoryRepository {
 
-    public categories: CategoryModel[] = []
 
+    public categories: CategoryModel[] = []
+    private static _instance: InMemoryCategoryRepository
+    
      save(category: CategoryModel): Promise<CategoryModel> {
         
         if(!category){
@@ -18,8 +20,9 @@ export default class InMemoryCategoryRepository implements CategoryRepository {
                
     }
     async findById(id: string): Promise<CategoryModel | undefined> {
-
-        const category = this.categories.find(category => category.id === id) 
+    
+        const category = this.categories.find(categ => categ.id == id) 
+        
         if (!category) {
             throw new Error("Category don't exists");
             return;
@@ -28,10 +31,10 @@ export default class InMemoryCategoryRepository implements CategoryRepository {
     }
 
    async findall(): Promise<CategoryModel[] | null> {
-       
-        
         return this.categories
    }
 
-
+   static getInstance() { 
+        return this._instance || (this._instance = new this)
+   }
 }

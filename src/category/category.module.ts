@@ -1,30 +1,35 @@
 import { Module } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CategoryController } from './category.controller';
-import InMemoryCategoryRepository from '../@core/infra/fakeRepositories/in-memory-category-repository';
 import { CreateCategory } from 'src/@core/domain/usecases/create-category/create-category';
 import { CategoryRepository } from 'src/@core/dataLayer/repository/CategoryRepository';
 import { ListAllCategories } from 'src/@core/domain/usecases/list-all-categories/list-all-categories';
+import { PrismaCategoryRepository } from 'src/@core/infra/RemoteRepositories/PrismaRepositories/prisma-category-repository';
+import { PrismaService } from 'src/prisma.service';
 
 @Module({
   controllers: [CategoryController],
-  providers: [
+  providers: [PrismaService,
+
     {
-      provide: InMemoryCategoryRepository,
-      useClass: InMemoryCategoryRepository
+      provide: PrismaCategoryRepository,
+      useFactory: (prisma: PrismaService)=>{
+        return new PrismaCategoryRepository(prisma)
+      },
+      inject:[PrismaService]
     },
     {
       provide: CreateCategory,
-      useFactory: (inMemoryCategoryRepo: CategoryRepository) => {
-        return new CreateCategory(inMemoryCategoryRepo)
+      useFactory: (CategoryRepository: CategoryRepository) => {
+        return new CreateCategory(CategoryRepository)
       },
-      inject:[InMemoryCategoryRepository]
+      inject:[PrismaCategoryRepository]
     },{
       provide: ListAllCategories,
-      useFactory: (inMemoryCategoryRepo: CategoryRepository) => {
-        return new ListAllCategories(inMemoryCategoryRepo)
+      useFactory: (CategoryRepository: CategoryRepository) => {
+        return new ListAllCategories(CategoryRepository)
       },
-      inject:[InMemoryCategoryRepository]
+      inject:[PrismaCategoryRepository]
     },
   ]
 })

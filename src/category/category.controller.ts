@@ -18,7 +18,7 @@ export class CategoryController {
   }
 
   @Get()
-  findAll( ) {
+  findAll() {
     return this.listAllCategories.execute()
   }
 

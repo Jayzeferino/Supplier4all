@@ -9,6 +9,7 @@ export class SupplierMapper{
     public async mapFrom(data: CreateSupplierDto, categoryRepo: CategoryRepository): Promise<SupplierModel>{
         
         const category = await categoryRepo.findById(data.category)
+        console.log(category)
         const supplier = new SupplierModel({
             name: data.name,
             contact: data.contact,

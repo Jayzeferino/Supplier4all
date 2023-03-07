@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCategoryDto } from '../@core/shared/dtos/category/create-category.dto';
-// import { UpdateCategoryDto } from './dto/update-category.dto';
-import { categoryMapper } from 'src/@core/dataLayer/mappers/category-mapper';
-import { CreateCategory } from 'src/@core/domain/usecases/create-category/create-category';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class CategoryService {
+  constructor(private prisma: PrismaService){}
   create(createCategoryDto: CreateCategoryDto) {
     return `This action returns all category`;
   }

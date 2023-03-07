@@ -14,8 +14,6 @@ export class CreateCategory{
        
         const category = Category.create(createCategory)        
         
-        await this.categoryRepository.save(category)
-        
-        return category
+        return await this.categoryRepository.save(category)
     }
 }

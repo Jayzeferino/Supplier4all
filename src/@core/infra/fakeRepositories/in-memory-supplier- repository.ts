@@ -16,8 +16,7 @@ export default class InMemorySupplierRepository implements SuppliersRepository {
     }
    
     async findById(id: string): Promise<SupplierModel | undefined> {
-
-        const supplier = this.suppliers.find(supplier => supplier.id === id) 
+        const supplier = await this.suppliers.find(supplier => supplier.id === id) 
         if (!supplier) {
             throw new Error("Supplier don't exists");
             return;

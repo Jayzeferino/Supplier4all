@@ -1,4 +1,3 @@
-import { SupplierMapper } from "src/@core/dataLayer/mappers/supplier-mapper"
 import { SuppliersRepository } from "../../../dataLayer/repository/SuppliersRepository"
 import { Category } from "../../entities/Category"
 import { Supplier } from "../../entities/Supplier"

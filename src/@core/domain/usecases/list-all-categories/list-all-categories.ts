@@ -1,4 +1,3 @@
-import { categoryMapper } from "src/@core/dataLayer/mappers/category-mapper";
 import { CategoryRepository } from "src/@core/dataLayer/repository/CategoryRepository"
 
 export class ListAllCategories{

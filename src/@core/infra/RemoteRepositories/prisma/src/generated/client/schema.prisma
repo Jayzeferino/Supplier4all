@@ -1,0 +1,55 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./src/generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category{
+  Id String @unique
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  suppliers Supplier[]
+}
+
+model Supplier{
+  Id String @unique 
+  name String
+  contact Int
+  email String?
+  eccomerce String?
+  instragramUrl String?
+  rate Int?
+  category Category @relation(fields: [categoryId], references: [Id])
+  categoryId String 
+  favoriteSuppliers FavoriteCostumerSupplier[]
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Costumer{
+    Id String @unique 
+    name String
+    email String @unique
+    phoneNumber String? 
+    password String
+    paymentStatus String
+    paymentDate DateTime
+    paymentdueDate DateTime?
+    FavoriteSuppliers FavoriteCostumerSupplier[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model FavoriteCostumerSupplier{
+  
+  Costumer Costumer @relation(fields: [CostumerId], references: [Id])
+  CostumerId String 
+  Supplier Supplier @relation(fields: [SupplierId], references: [Id])
+  SupplierId String
+  @@id([CostumerId,SupplierId])
+}
