@@ -2,7 +2,7 @@ import { CategoryModel } from "src/@core/dataLayer/models/category"
 
 export class CreateSupplierDto {
     name: string
-    contact: number
+    contact: string
     email?: string
     eccomerce?: string
     category: string

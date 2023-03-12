@@ -1,21 +1,30 @@
-import { Controller, Get, Post, Body} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param} from '@nestjs/common';
 import { CreateSupplierDto } from '../@core/shared/dtos/supplier/create-supplier.dto';
 import { CreateSupplier } from 'src/@core/domain/usecases/create-supplier/create-supplier';
 import { ListAllSuppliers } from 'src/@core/domain/usecases/list-all-suppliers/list-all-suppliers';
 import { SupplierMapper } from '../@core/dataLayer/mappers/supplier-mapper';
 import InMemoryCategoryRepository from '../@core/infra/fakeRepositories/in-memory-category-repository';
+import { ListOneSupplier } from 'src/@core/domain/usecases/list-suppliers-by-id/list-one-supplier';
+import { ListSupplierByCategory } from 'src/@core/domain/usecases/list-suppliers-by-category/list-supplier-by-category';
+import { PrismaService } from 'src/prisma.service';
+import { PrismaCategoryRepository } from 'src/@core/infra/RemoteRepositories/PrismaRepositories/prisma-category-repository';
 
 @Controller('suppliers')
 export class SuppliersController {
-  constructor( private createSupplier: CreateSupplier, private listAllSuppliers: ListAllSuppliers){
 
-  }
+  constructor( private createSupplier: CreateSupplier, 
+    private listAllSuppliers: ListAllSuppliers, 
+    private readonly listOne: ListOneSupplier,
+     private readonly listByCategory: ListSupplierByCategory,
+     private readonly prisma: PrismaService,
+     private readonly repo: PrismaCategoryRepository){
+      this.repo = new PrismaCategoryRepository(this.prisma)
+     }
 
   @Post(`/create`)
   async create(@Body() createSupplierDto: CreateSupplierDto) {
     const mapper = new SupplierMapper()
-    const repository = new InMemoryCategoryRepository()
-    const supplier = await mapper.mapFrom(createSupplierDto, repository)
+    const supplier = await mapper.mapFrom(createSupplierDto, this.repo)
     return this.createSupplier.execute({
       name: supplier.props.name,
       contact: supplier.props.contact,
@@ -32,10 +41,11 @@ export class SuppliersController {
     return this.listAllSuppliers.execute();
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.suppliersService.findOne(+id);
-  // }
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+  
+    return this.listOne.execute({id});
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateSupplierDto: UpdateSupplierDto) {

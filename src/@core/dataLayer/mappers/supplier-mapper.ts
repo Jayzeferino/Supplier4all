@@ -1,18 +1,19 @@
 import { CreateSupplierDto } from "../../shared/dtos/supplier/create-supplier.dto"
 import { SupplierModel } from "../models/supplier"
 import { CategoryRepository } from "../repository/CategoryRepository"
+import { categoryMapper } from "./category-mapper"
 
 
 
 export class SupplierMapper{
     
-    public async mapFrom(data: CreateSupplierDto, categoryRepo: CategoryRepository): Promise<SupplierModel>{
-        
-        const category = await categoryRepo.findById(data.category)
-        console.log(category)
+    public async mapFrom(data: CreateSupplierDto, categoryRepo?: CategoryRepository): Promise<SupplierModel>{
+        const categorydto = await categoryRepo.findById(data.category)
+        const mapper = new categoryMapper()
+        const category= mapper.mapFrom(categorydto)
         const supplier = new SupplierModel({
             name: data.name,
-            contact: data.contact,
+            contact: parseInt(data.contact),
             email: data.email,
             eccomerce: data.eccomerce,
             category: category,
@@ -26,7 +27,7 @@ export class SupplierMapper{
         const supplier = new CreateSupplierDto()
        
         supplier.name = data.props.name
-        supplier.contact= data.props.contact
+        supplier.contact= data.props.contact.toString()
         supplier.email= data.props.email
         supplier.eccomerce= data.props.eccomerce
         supplier.category= data.props.category.id

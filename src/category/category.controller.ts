@@ -1,6 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
 import { CreateCategoryDto } from '../@core/shared/dtos/category/create-category.dto';
-// import { UpdateCategoryDto } from './dto/update-category.dto';
 import { categoryMapper } from '../@core/dataLayer/mappers/category-mapper';
 import { CreateCategory } from '../@core/domain/usecases/create-category/create-category';
 import { ListAllCategories } from 'src/@core/domain/usecases/list-all-categories/list-all-categories';
@@ -18,8 +17,8 @@ export class CategoryController {
   }
 
   @Get()
-  findAll() {
-    return this.listAllCategories.execute()
+  async findAll() {
+    return await this.listAllCategories.execute()
   }
 
   // @Get(':id')

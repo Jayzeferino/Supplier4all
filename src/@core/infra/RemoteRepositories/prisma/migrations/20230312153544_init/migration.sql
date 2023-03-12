@@ -10,15 +10,14 @@ CREATE TABLE "Category" (
 CREATE TABLE "Supplier" (
     "Id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "contact" INTEGER NOT NULL,
+    "contact" TEXT NOT NULL,
     "email" TEXT,
     "eccomerce" TEXT,
     "instragramUrl" TEXT,
     "rate" INTEGER,
     "categoryId" TEXT NOT NULL,
     "createAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "Supplier_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category" ("Id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "updatedAt" DATETIME NOT NULL
 );
 
 -- CreateTable
@@ -28,8 +27,8 @@ CREATE TABLE "Costumer" (
     "email" TEXT NOT NULL,
     "phoneNumber" TEXT,
     "password" TEXT NOT NULL,
-    "paymentStatus" TEXT,
-    "paymentDate" DATETIME,
+    "paymentStatus" TEXT NOT NULL,
+    "paymentDate" DATETIME NOT NULL,
     "paymentdueDate" DATETIME,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
@@ -40,13 +39,14 @@ CREATE TABLE "FavoriteCostumerSupplier" (
     "CostumerId" TEXT NOT NULL,
     "SupplierId" TEXT NOT NULL,
 
-    PRIMARY KEY ("CostumerId", "SupplierId"),
-    CONSTRAINT "FavoriteCostumerSupplier_CostumerId_fkey" FOREIGN KEY ("CostumerId") REFERENCES "Costumer" ("Id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "FavoriteCostumerSupplier_SupplierId_fkey" FOREIGN KEY ("SupplierId") REFERENCES "Supplier" ("Id") ON DELETE RESTRICT ON UPDATE CASCADE
+    PRIMARY KEY ("CostumerId", "SupplierId")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Category_Id_key" ON "Category"("Id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Supplier_Id_key" ON "Supplier"("Id");

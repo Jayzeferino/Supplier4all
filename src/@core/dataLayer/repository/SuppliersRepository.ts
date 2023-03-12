@@ -1,9 +1,9 @@
-import { Supplier } from "src/@core/domain/entities/Supplier";
+import { SupplierModel } from "../models/supplier";
 
 export interface SuppliersRepository{
-   save(supplier: Supplier): Promise<Supplier | undefined>
-   findById(id: string): Promise<Supplier | undefined>
-   findByCategory(id: string): Promise<Supplier[] | undefined>
-   findByEmail(email: string): Promise<Supplier | undefined>
-   findall(): Promise<Supplier[]| null>
+   save(supplier: SupplierModel): Promise<SupplierModel | undefined>
+   findById(id: string): Promise<SupplierModel | undefined>
+   findByCategory(id: string): Promise<SupplierModel[] | undefined>
+   findByEmail(email: string): Promise<SupplierModel | undefined>
+   findall(): Promise<SupplierModel[]| null>
 }
