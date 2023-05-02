@@ -10,5 +10,6 @@ Project MVP created for improve my learning.
 - Technology used 
     - Nestjs
     - Prisma
+    - Typescript
     
 
