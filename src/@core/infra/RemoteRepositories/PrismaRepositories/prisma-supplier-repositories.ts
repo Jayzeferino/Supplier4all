@@ -40,8 +40,13 @@ export class PrismaSupplierRepository implements SuppliersRepository{
         })
         return supplier
     }
-    findByCategory(id: string): Promise<any> {
-        throw new Error("Method not implemented.");
+    async findByCategory(id: string): Promise<any> {
+        const suppliers = this.prisma.supplier.findMany({
+            where: {
+                categoryId: id
+            }
+        })
+        return suppliers
     }
     async findByEmail(email: string): Promise<any> {
         const supplier = await this.prisma.supplier.findFirstOrThrow({
@@ -51,7 +56,7 @@ export class PrismaSupplierRepository implements SuppliersRepository{
         })
         return supplier
     }
-    findall(): Promise<any> {
+    async findall(): Promise<any> {
         const suppliers = this.prisma.supplier.findMany()
         return suppliers
 

@@ -10,7 +10,7 @@ export class ListSupplierByCategory {
     public constructor(private supplierRepository: SuppliersRepository)
     {}
      async execute({category}:ListSupplierByCategoryRequest){
-        const supplier = await this.supplierRepository.findByCategory(category.props.name)
+        const supplier = await this.supplierRepository.findByCategory(category.id)
         
 
         return supplier
